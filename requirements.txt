@@ -2,5 +2,6 @@ snappy
 ctypes_snappy
 numpy
 pandas
-shapely
+geopandas
+shapely==1.7.1
 sentinelsat

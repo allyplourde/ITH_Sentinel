@@ -21,12 +21,12 @@ from sentinelsat import SentinelAPI
 from getpass import getpass
 
 # connect to copernicus
-user = input("Please enter your Coperniscus Username:\t")
+user = input("Please enter your Copernicus Username:\t")
 password = getpass("Password: ")
 api = SentinelAPI(user, password, 'https://scihub.copernicus.eu/dhus')
 
 # set working directory
-wrkdir = "path/to/directory"  
+wrkdir = "Downloads"
 os.chdir(wrkdir)
 
 #ITH-South
@@ -34,8 +34,8 @@ os.chdir(wrkdir)
 roi = [-133, 69.0, -133.9, 68.3]
 
 # define the dates of imagery to fetch
-startdate = pd.to_datetime("October 15, 2021")
-days = 15
+startdate = pd.to_datetime("October 15, 2020")
+days = 365
 dates = startdate + pd.to_timedelta(np.arange(days), "D")
 
 #convert spat to well known text (assumes bb is in ulx uly, lrx lry)
@@ -51,7 +51,9 @@ products = api.query(footprint,
                      platformname = 'Sentinel-1',
                      producttype = 'SLC',
                      sensoroperationalmode = 'IW',
-                     orbitdirection = 'ASCENDING')
+                     orbitdirection = 'ASCENDING',
+                     relativeorbitnumber = 108,
+                     slicenumber = 11)
 
 
 #Convert the results to a geopandas dataframe
