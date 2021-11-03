@@ -1,0 +1,6 @@
+snappy
+ctypes_snappy
+numpy
+pandas
+shapely
+sentinelsat
